@@ -1,5 +1,5 @@
 from PIL import Image
-from utils.router import detect_and_respond
+from utils.router import multimodal_router as detect_and_respond
 
 if __name__ == "__main__":
     # Test text input
