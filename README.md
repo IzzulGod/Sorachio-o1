@@ -27,14 +27,13 @@ python app.py
 
 Usage
 
-Input type: text, image, or audio
-
-Input data: For text, type your prompt; for image/audio, provide the file path.
+-Input type: text, image, or audio
+-Input data: For text, type your prompt; for image/audio, provide the file path.
 
 
 Example:
 ```
 Input type (text/image/audio or 'quit'): text
 Input data (prompt or file path): Who are you?
-Response: I am Sorachio, your multimodal assistant!
+Response: I am Sorachio, your AI assistant!
 ```
