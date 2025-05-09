@@ -4,7 +4,6 @@ This project combines:
 - Sorachio-360M-Chat for text
 - SmolVLM2-256M-Video-Instruct for image/video
 - Whisper small for audio (ASR)
-- Coqui TTS for text-to-speech 
 
 ## Setup
 
