@@ -1,7 +1,7 @@
 # Sorachio-o1 Multimodal
 
 This project combines:
-- Sorachio (SmolLM2-360M-Instruct) for text
+- Sorachio-360M-Chat for text
 - SmolVLM2-256M-Video-Instruct for image/video
 - Whisper (small) for audio
 
