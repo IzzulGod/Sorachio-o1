@@ -4,5 +4,5 @@ num2words
 flash-attn
 torch
 torchaudio
-whisper
+openai-whisper
 Pillow
