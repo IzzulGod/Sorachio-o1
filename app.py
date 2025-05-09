@@ -11,7 +11,7 @@ print("Upload image file:")
 uploaded_image = files.upload()
 for image_name in uploaded_image.keys():
     if os.path.exists(image_name):
-        print("Image Response:", multimodal_router("image", image_name))  # Kirim PATH saja
+        print("Image Response:", multimodal_router("image", image_name)) 
     else:
         print(f"[!] {image_name} not found.")
 
@@ -20,6 +20,6 @@ print("Upload audio file:")
 uploaded_audio = files.upload()
 for audio_name in uploaded_audio.keys():
     if os.path.exists(audio_name):
-        print("Audio Response:", multimodal_router("audio", audio_name))  # Kirim PATH saja
+        print("Audio Response:", multimodal_router("audio", audio_name)) 
     else:
         print(f"[!] {audio_name} not found.")
