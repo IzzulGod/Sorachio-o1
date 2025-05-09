@@ -1,21 +1,28 @@
-import torch
-from transformers import AutoProcessor, AutoModelForImageTextToText
 from PIL import Image
+from transformers import AutoProcessor, AutoModelForVision2Seq
+import torch
 
-vlm_model_id = "HuggingFaceTB/SmolVLM2-256M-Video-Instruct"
-vlm_processor = AutoProcessor.from_pretrained(vlm_model_id)
-vlm_model = AutoModelForImageTextToText.from_pretrained(
-    vlm_model_id,
-    torch_dtype=torch.bfloat16,
-    _attn_implementation="flash_attention_2"
-)
-vlm_model = vlm_model.to("cuda")
-
+# Load processor and model once at the top (so they don't reload every call)
+processor = AutoProcessor.from_pretrained('SmolVLM/SmolVLM-2-256M-Video-Instruct')
+model = AutoModelForVision2Seq.from_pretrained('SmolVLM/SmolVLM-2-256M-Video-Instruct').to('cuda' if torch.cuda.is_available() else 'cpu')
 
 def respond_image(image_path):
-    image = Image.open(image_path)
-    inputs = vlm_processor(images=image, text="Describe this image.", return_tensors="pt").to("cuda")
-    with torch.no_grad():
-        generated_ids = vlm_model.generate(**inputs, max_new_tokens=100)
-        generated_text = vlm_processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
-    return generated_text
+    try:
+        # Open the image
+        image = Image.open(image_path)
+
+        # Define the prompt
+        prompt = "<|image|> Describe this image."
+
+        # Process the input
+        inputs = processor(prompt, images=[image], return_tensors="pt").to(model.device)
+
+        # Generate the output
+        outputs = model.generate(**inputs)
+
+        # Decode the response
+        response = processor.decode(outputs[0], skip_special_tokens=True)
+
+        return response
+    except Exception as e:
+        return f"[Image Error] {str(e)}"
