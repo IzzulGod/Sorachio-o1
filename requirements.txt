@@ -1,7 +1,8 @@
 transformers
 accelerate
-bitsandbytes
-git+https://github.com/openai/whisper.git
-TTS
+num2words
+flash-attn
+torch
+torchaudio
+whisper
 Pillow
-torchvision
