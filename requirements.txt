@@ -1,0 +1,7 @@
+transformers
+accelerate
+bitsandbytes
+git+https://github.com/openai/whisper.git
+TTS
+Pillow
+torchvision
