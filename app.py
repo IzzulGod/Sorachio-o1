@@ -1,23 +1,42 @@
 import os
 from PIL import Image
+from google.colab import files
 from utils.router import multimodal_router
 
-if __name__ == "__main__":
-    # TEXT
+# Fungsi untuk input dan respons chat teks
+def chat_with_sorachio():
+    # Teks
     text_input = input("Enter text for Sorachio: ")
     print("Text Response:", multimodal_router("text", text_input))
+    
+# Fungsi untuk upload gambar dan respons
+def upload_and_process_image():
+    print("Upload image file:")
+    uploaded_image = files.upload()  # Upload file gambar
+    
+    for image_name in uploaded_image.keys():
+        if os.path.exists(image_name):
+            img = Image.open(image_name)
+            print("Image Response:", multimodal_router("image", image_name))
+        else:
+            print(f"[!] {image_name} not found. Please upload it.")
+    
+# Fungsi untuk upload audio dan respons
+def upload_and_process_audio():
+    print("Upload audio file:")
+    uploaded_audio = files.upload()  # Upload file audio
+    
+    for audio_name in uploaded_audio.keys():
+        if os.path.exists(audio_name):
+            print("Audio Response:", multimodal_router("audio", audio_name))
+        else:
+            print(f"[!] {audio_name} not found. Please upload it.")
+            
 
-    # IMAGE
-    image_path = "sample.jpg"
-    if os.path.exists(image_path):
-        img = Image.open(image_path)
-        print("Image Response:", multimodal_router("image", img))
-    else:
-        print(f"[!] {image_path} not found. Upload it to this folder.")
+# Main program
+if __name__ == "__main__":
+    chat_with_sorachio()
 
-    # AUDIO
-    audio_path = "sample.wav"
-    if os.path.exists(audio_path):
-        print("Audio Response:", multimodal_router("audio", audio_path))
-    else:
-        print(f"[!] {audio_path} not found. Upload it to this folder.")
+    upload_and_process_image()
+
+    upload_and_process_audio()
