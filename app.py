@@ -1,27 +1,25 @@
 import os
-from PIL import Image
+from google.colab import files
 from utils.router import multimodal_router
 
-def chat_with_sorachio():
-    text_input = input("Enter text for Sorachio: ")
-    print("Text Response:", multimodal_router("text", text_input))
+# TEXT
+text_input = input("Enter text for Sorachio: ")
+print("Text Response:", multimodal_router("text", text_input))
 
-def process_image():
-    image_path = input("Enter image file path: ")
-    if os.path.exists(image_path):
-        img = Image.open(image_path)
-        print("Image Response:", multimodal_router("image", img))
+# IMAGE
+print("Upload image file:")
+uploaded_image = files.upload()
+for image_name in uploaded_image.keys():
+    if os.path.exists(image_name):
+        print("Image Response:", multimodal_router("image", image_name))  # Kirim PATH saja
     else:
-        print(f"[!] {image_path} not found.")
+        print(f"[!] {image_name} not found.")
 
-def process_audio():
-    audio_path = input("Enter audio file path: ")
-    if os.path.exists(audio_path):
-        print("Audio Response:", multimodal_router("audio", audio_path))
+# AUDIO
+print("Upload audio file:")
+uploaded_audio = files.upload()
+for audio_name in uploaded_audio.keys():
+    if os.path.exists(audio_name):
+        print("Audio Response:", multimodal_router("audio", audio_name))  # Kirim PATH saja
     else:
-        print(f"[!] {audio_path} not found.")
-
-if __name__ == "__main__":
-    chat_with_sorachio()
-    process_image()
-    process_audio()
+        print(f"[!] {audio_name} not found.")
