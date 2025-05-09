@@ -8,7 +8,9 @@ vlm_model = AutoModelForImageTextToText.from_pretrained(
     vlm_model_id,
     torch_dtype=torch.bfloat16,
     _attn_implementation="flash_attention_2"
-).to("cuda")
+)
+vlm_model = vlm_model.to("cuda")
+
 
 def respond_image(image_path):
     image = Image.open(image_path)
