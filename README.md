@@ -1,30 +1,40 @@
-# Sorachio Multimodal Assistant
+# Sorachio-o1 Multimodal
 
 This project combines:
-- Sorachio-360M-Chat for text
+- Sorachio (SmolLM2-360M-Instruct) for text
 - SmolVLM2-256M-Video-Instruct for image/video
-- Whisper small for audio (ASR)
+- Whisper (small) for audio
 
 ## Setup
 
-1. Clone this repository:
+1. Clone the repo:
+```bash
+git clone https://github.com/IzzulGod/Sorachio-o1.git
+cd Sorachio-o1
 ```
-git clone https://github.com/IzzulGod/Sorachio-o1.git cd Sorachio-o1
-```
-2. Install dependencies:
+
+2. Install requirements:
 ```
 pip install -r requirements.txt
 ```
+
+
 3. Run the app:
 ```
 python app.py
 ```
-Make sure you provide sample image (sample.jpg) and sample audio (sample.wav) in the root folder for testing.
 
----
 
-## Folder Structure
+Usage
 
-- *models/* → contains model loading + response functions
-- *utils/* → contains the input routing logic
-- *app.py* → main script to test everything
+Input type: text, image, or audio
+
+Input data: For text, type your prompt; for image/audio, provide the file path.
+
+
+Example:
+```
+Input type (text/image/audio or 'quit'): text
+Input data (prompt or file path): Who are you?
+Response: I am Sorachio, your multimodal assistant!
+```
