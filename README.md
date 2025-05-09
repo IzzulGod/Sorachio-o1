@@ -28,4 +28,3 @@ Make sure you provide sample image (sample.jpg) and sample audio (sample.wav) in
 - *models/* → contains model loading + response functions
 - *utils/* → contains the input routing logic
 - *app.py* → main script to test everything
--
